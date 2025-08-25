@@ -1,0 +1,29 @@
+{
+  "name": "quantixbackend",
+  "version": "1.0.0",
+  "description": "sistema gestor de inventarios",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "pm2": "pm2 start index.js --name appQuantix",
+    "lint": "eslint"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^9.33.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "@hapi/boom": "^10.0.1",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "faker": "^5.5.3",
+    "joi": "^18.0.1"
+  }
+}
