@@ -19,7 +19,7 @@ const options = {
 }
 app.use(cors(options));
 
-const port = 3002;
+const port = process.env.PORT || 3002;
 
 app.get('/', (req, res) => {
   res.send('Hola, mi server en express')
