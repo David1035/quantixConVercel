@@ -10,14 +10,14 @@ app.use(express.json());
 const whiteList = ['https://quantix-con-vercel-git-main-david-hs-projects-5e848725.vercel.app/api','http://localhost:3002', 'http://localhost:5001', 'https://quantix-con-vercel.vercel.app/'];
 const options = {
   origin: (origin, callback) => {
-    if(whiteList.includes(origin)) {
+    if(whiteList.includes(origin) || !origin) {
       callback(null, true)
     } else {
       callback(new Error('prohibido'))
     }
   }
 }
-app.use(cors());
+app.use(cors(options));
 
 const port = process.env.PORT || 3002;
 
