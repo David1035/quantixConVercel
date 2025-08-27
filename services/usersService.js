@@ -16,9 +16,9 @@ class UsersService{
   }
 
   async findOne(id) {
-    const data = 'SELECT * FROM tasks WHERE id = $1'
-    const rta = await this.pool.query(data,[id])
-    return rta.rows[0];
+    const data = 'SELECT * FROM tasks WHERE id = $'
+    const [rta] = await sequelize.query(data,[id])
+    return rta;
   }
 
   async update(id, data) {
