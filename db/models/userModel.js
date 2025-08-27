@@ -37,7 +37,13 @@ class User extends Model {
       sequelize,
       tableName: USER_TABLE,
       modelName: 'User', // por qué se llama User, por que se extiende?
-      timesTamps: false
+      timestamps: false
     }
   }
+}
+
+module.exports = {
+  USER_TABLE,
+  UserSchema,
+  User
 }
