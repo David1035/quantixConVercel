@@ -1,3 +1,4 @@
+const { USER_TABLE } = require('./userModel')
 const { Model, DataTypes, Sequelize } = require("sequelize");
 
 const CUSTOMER_TABLE = 'customer'; // nombre de la tabla en mi motor de bd
@@ -34,12 +35,24 @@ const CustomerSchema = {
     type: DataTypes.DATE,
     field: 'create_at',
     defaultValue: Sequelize.NOW
+  },
+  userId: {
+    field: 'user_id',
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    references: {
+      model: USER_TABLE,
+      key: 'id'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
   }
 }
 
 class Customer extends Model {
-  static associate() {
+  static associate(models) {
     //aquí van las asociaciones - o relaciones
+    this.belongsTo(models.User, {as: 'user'})
   }
 
   static config(sequelize) {
