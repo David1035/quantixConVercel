@@ -34,7 +34,7 @@ router.post('/',
   async (req, res, next) => {
     try {
       const body = req.body;
-      const newUser = service.create(body);
+      const newUser = await service.create(body);
       res.status(201).json(newUser);
     } catch (error) {
       next(error)
@@ -62,8 +62,8 @@ router.delete('/:id',
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const userDelete = service.delete(id);
-      return userDelete;
+      const userDelete = await service.delete(id);
+      res.json(userDelete);
     } catch (error) {
       next(error)
     }
