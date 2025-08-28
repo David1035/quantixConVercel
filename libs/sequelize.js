@@ -6,15 +6,15 @@ const USER = encodeURIComponent(config.dbUser);
 const PASSWORD = encodeURIComponent(config.dbPassword);
 
 //const URI =`postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`
-const URI =`mysql://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`
+const URI =`postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`
 
 
 const sequelize = new Sequelize(URI, {
-  dialect: 'mysql',
+  dialect: 'postgres',
   logging: true
 });
 
 setupModels(sequelize); //ejecutamos nuestro modelo
-sequelize.sync(); // sincronizamos para crear las tablas
+//sequelize.sync(); // sincronizamos para crear las tablas
 
 module.exports = sequelize;

@@ -1,10 +1,10 @@
 const express = require('express');
-const UsersService = require('../services/userService');
+const UserService = require('../services/userService');
 const validatorHandler = require('./../middlewares/validatorHandler');
 const { createUserSchema, getUserSchema, updateUserSchema } = require('./../schemas/userSchema');
 const boom = require('@hapi/boom');
 
-const service = new UsersService();
+const service = new UserService();
 const router = express.Router();
 
 
