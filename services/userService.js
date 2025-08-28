@@ -24,9 +24,9 @@ class UsersService{
     return user;
   }
 
-  async update(id, changes) {
+  async update(id, data) {
     const user = await this.findOne(id);
-    const rta = await models.User.update(changes);
+    const rta = await user.update(data);
     return rta
   }
 

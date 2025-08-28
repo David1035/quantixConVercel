@@ -50,7 +50,7 @@ router.patch('/:id',
       const { id } = req.params;
       const body = req.body;
       const updateUser = await service.update(id, body);
-      res.status(boom.badData()).json(updateUser)
+      res.json(updateUser)
     } catch (error) {
       next(error)
     }

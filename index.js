@@ -1,23 +1,23 @@
 const express = require('express');
 const cors = require('cors')
 const routerApi = require('./routes');
-const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler');
+const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('./middlewares/error.handler');
 const { el } = require('@faker-js/faker');
 
 const app = express();
 app.use(express.json());
 
-const whiteList = ['https://quantix-con-vercel-git-main-david-hs-projects-5e848725.vercel.app/api','http://localhost:3002', 'http://localhost:5001', 'https://quantix-con-vercel.vercel.app/'];
+const whiteList = ['http://127.0.0.1:5500/','http://localhost:3002', 'http://localhost:5001', 'http://localhost:5500'];
 const options = {
   origin: (origin, callback) => {
-    if(whiteList.includes(origin) || !origin) {
+    if(whiteList.includes(origin) || !origin ) {
       callback(null, true)
     } else {
       callback(new Error('prohibido'))
     }
   }
 }
-app.use(cors(options));
+app.use(cors());
 
 const port = process.env.PORT || 3002;
 
@@ -28,6 +28,7 @@ app.get('/', (req, res) => {
 
 routerApi(app);
 app.use(logErrors);
+app.use(ormErrorHandler)
 app.use(boomErrorHandler);
 app.use(errorHandler);
 
