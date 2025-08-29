@@ -12,12 +12,16 @@ class UserService{
   }
 
   async find() {
-    const rta = await models.User.findAll() // trae todos los datos que tengamos en nuestra base de datos
+    const rta = await models.User.findAll({
+      include: 'customer'
+    }) // trae todos los datos que tengamos en nuestra base de datos
     return  rta;
   }
 
   async findOne(id) {
-    const user = await models.User.findByPk(id);
+    const user = await models.User.findByPk(id, {
+      include: 'customer'
+    });
     if(!user) {
       throw boom.notFound('User not found - no encontrado')
     }

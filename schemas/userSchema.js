@@ -1,4 +1,3 @@
-const { ro } = require('faker/lib/locales');
 const Joi = require('joi');
 
 const id = Joi.number().integer();
