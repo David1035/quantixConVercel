@@ -7,7 +7,6 @@ class CustomerService {
   }
 
   async create(data) {
-    console.log('data service')
     const customer = await models.Customer.create(data, {
       include: ['user']
     });
