@@ -19,7 +19,7 @@ const OrderProductSchema = {
 		field: 'order_id',
 		allowNull: false,
 		type: DataTypes.INTEGER,
-		References: {
+		references: {
 			model: ORDER_TABLE,
 			key: 'id',
 		},
@@ -27,7 +27,7 @@ const OrderProductSchema = {
 		onDelete: 'SET NULL',
 	},
   productId: {
-    field: 'product_Id',
+    field: 'product_id',
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
@@ -40,8 +40,9 @@ const OrderProductSchema = {
 		type: DataTypes.DATE,
 		field: 'created_at',
 		defaultValue: Sequelize.NOW,
-	},
+	}
 };
+
 
 class OrderProduct extends Model {
 	static associate(models) {
