@@ -19,6 +19,8 @@ const options = {
 }
 app.use(cors());
 
+require('./utils/auth');
+
 const port = process.env.PORT || 3002;
 
 app.get('/', checkApiKey,  (req, res) => {

@@ -1,5 +1,7 @@
 const { models } = require('./../libs/sequelize');
-const boom = require('@hapi/boom')
+const bcrypt = require('bcrypt');
+const boom = require('@hapi/boom');
+const passport = require('passport');
 
 class UserService{
   constructor(){
@@ -7,7 +9,12 @@ class UserService{
   }
 
   async create(data){
-    const rta = await models.User.create(data);
+    const hash = await  bcrypt.hash(data.password, 10);
+    const rta = await models.User.create({
+      ...data,
+      password: hash
+    });
+    delete rta.dataValues.password; // eliminar el passwd de la respuesta
     return rta;
   }
 
@@ -15,6 +22,12 @@ class UserService{
     const rta = await models.User.findAll({
       include: 'customer'
     }) // trae todos los datos que tengamos en nuestra base de datos
+    return  rta;
+  }
+  async findByEmail(email) {
+    const rta = await models.User.findOne({
+      where: { email }
+    })
     return  rta;
   }
 
